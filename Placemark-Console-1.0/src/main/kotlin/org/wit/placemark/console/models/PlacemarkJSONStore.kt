@@ -46,8 +46,9 @@ class PlacemarkJSONStore : PlacemarkStore {
     override fun update(placemark: PlacemarkModel) {
         var foundPlacemark = findOne(placemark.id!!)
         if (foundPlacemark != null) {
-            foundPlacemark.title = placemark.title
-            foundPlacemark.description = placemark.description
+            foundPlacemark.wordOne   = placemark.wordOne
+            foundPlacemark.wordTwo   = placemark.wordTwo
+            foundPlacemark.wordThree = placemark.wordThree
         }
         serialize()
     }

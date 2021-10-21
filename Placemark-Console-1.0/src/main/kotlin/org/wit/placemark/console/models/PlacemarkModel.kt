@@ -1,8 +1,10 @@
 package org.wit.placemark.console.models
 
 data class PlacemarkModel(
-    var title: String = "",
-    var description: String = "",
-    var id: Long
+    var wordOne:   String = "",
+    var wordTwo:   String = "",
+    var wordThree: String = "",
+    var id: Long,
+    var inputOneCounter: Int = 0
 )
 
