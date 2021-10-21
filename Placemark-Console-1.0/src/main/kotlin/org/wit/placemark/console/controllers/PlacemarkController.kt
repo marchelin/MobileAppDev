@@ -1,0 +1,84 @@
+package org.wit.placemark.console.controllers
+
+import mu.KotlinLogging
+import org.wit.placemark.console.models.PlacemarkJSONStore
+import org.wit.placemark.console.models.PlacemarkModel
+import org.wit.placemark.console.views.PlacemarkView
+
+class PlacemarkController {
+
+    // val placemarks = PlacemarkMemStore()
+
+    val placemarks = PlacemarkJSONStore()
+
+    val placemarkView = PlacemarkView()
+    val logger = KotlinLogging.logger {}
+
+    init {
+        logger.info { "Launching Placemark Console App" }
+        println("Placemark Kotlin App Version 3.0")
+    }
+
+    fun start() {
+        var input: Int
+
+        do {
+            input = menu()
+            when (input) {
+                1 -> add()
+                2 -> update()
+                3 -> list()
+                4 -> search()
+                -1 -> println("Exiting App")
+                else -> println("Invalid Option")
+            }
+            println()
+        } while (input != -1)
+        logger.info { "Shutting Down Placemark Console App" }
+    }
+
+    fun menu() :Int { return placemarkView.menu() }
+
+    fun add(){
+        var aPlacemark = PlacemarkModel("ed", "edd", 1234)
+
+        if (placemarkView.addPlacemarkData(aPlacemark))
+            placemarks.create(aPlacemark)
+        else
+            logger.info("Placemark Not Added")
+    }
+
+    fun list() {
+        placemarkView.listPlacemarks(placemarks)
+    }
+
+    fun update() {
+
+        placemarkView.listPlacemarks(placemarks)
+        var searchId = placemarkView.getId()
+        val aPlacemark = search(searchId)
+
+        if(aPlacemark != null) {
+            if(placemarkView.updatePlacemarkData(aPlacemark)) {
+                placemarks.update(aPlacemark)
+                placemarkView.showPlacemark(aPlacemark)
+                logger.info("Placemark Updated : [ $aPlacemark ]")
+            }
+            else
+                logger.info("Placemark Not Updated")
+        }
+        else
+            println("Placemark Not Updated...")
+    }
+
+    fun search() {
+        val aPlacemark = search(placemarkView.getId())!!
+        placemarkView.showPlacemark(aPlacemark)
+    }
+
+
+    fun search(id: Long) : PlacemarkModel? {
+        var foundPlacemark = placemarks.findOne(id)
+        return foundPlacemark
+    }
+}
