@@ -21,6 +21,8 @@ class PlacemarkView {
         println(" 2. UPDATE my answers")
         println(" 3. LIST all my answers")
         println(" 4. SEARCH my answers")
+        println(" 5. SHOW the right answer")
+        println(" 6. SHOW my score")
         println("-1. Exit")
         println()
         print("Enter Option : ")
@@ -34,7 +36,7 @@ class PlacemarkView {
     }
 
     fun listPlacemarks(placemarks: PlacemarkJSONStore) {
-        println("LIST all my answers")
+        println("LIST my answers")
         println()
         placemarks.logAll()
         println()
@@ -59,6 +61,8 @@ class PlacemarkView {
         print("Type an id: ")
         placemark.id = readLine()!!.toLong()
 
+        //print("#ffffff gamer")
+
         when (inputNumber) {
             1 -> placemarkView.checkWord_Lvl_1(placemark)
             2 -> placemarkView.checkWord_Lvl_2(placemark)
@@ -82,13 +86,13 @@ class PlacemarkView {
         var tempId: Long?
 
         if (placemark != null) {
-            print("[ERROR] Please enter again your 1st word for [ " + placemark.wordOne   + " ] : ")
+            print("[Please now enter a new 1st word for " + placemark.wordOne   + "] : ")
             tempWordOne = readLine()!!
-            print("[ERROR] Please enter again your 2nd word for [ " + placemark.wordTwo   + " ] : ")
+            print("[Please now enter a new 2nd word for " + placemark.wordTwo   + "] : ")
             tempwordTwo = readLine()!!
-            print("[ERROR] Please enter again your 3rd word for [ " + placemark.wordThree + " ] : ")
+            print("[Please now enter a new 3rd word for " + placemark.wordThree + "] : ")
             tempWordThree = readLine()!!
-            print("[ERROR] Please try enter a different id for [ "  + placemark.id        + " ] : ")
+            print("[Please now enter a new id for "  + placemark.id        + "] : ")
             tempId = readLine()!!.toLong()
 
             if (!tempWordOne.isNullOrEmpty() && !tempwordTwo.isNullOrEmpty() && !tempWordThree.isNullOrEmpty()) {
@@ -105,12 +109,12 @@ class PlacemarkView {
     fun getId() : Long {
         var strId : String? // String to hold user input
         var searchId : Long // Long to hold converted id
-        print("Enter id to Search/Update : ")
+        print("Enter id to Search : ")
         strId = readLine()!!
         searchId = if (strId.toLongOrNull() != null && !strId.isEmpty())
             strId.toLong()
         else
-            -9
+            -11
         return searchId
     }
 
@@ -123,7 +127,7 @@ class PlacemarkView {
             rightAnsw++
             print("\nYou are right, KEY is the answer")
         }
-        else print("You are wrong, KEY was the answer\n")
+        else print("You are wrong, KEY was the right answer\n")
 
         return placemark.wordOne.isNotEmpty() && placemark.wordTwo.isNotEmpty() && placemark.wordThree.isNotEmpty()
     }
@@ -136,7 +140,7 @@ class PlacemarkView {
             rightAnsw++
             print("\nYou are right, DECK is the answer")
         }
-        else print("You are wrong, DECK was the answer\n")
+        else print("You are wrong, DECK was right the answer\n")
 
         return placemark.wordOne.isNotEmpty() && placemark.wordTwo.isNotEmpty() && placemark.wordThree.isNotEmpty()
     }
@@ -149,7 +153,7 @@ class PlacemarkView {
             rightAnsw++
             print("\nYou are right, TRUNK is the answer")
         }
-        else print("You are wrong, TRUNK was the answer\n")
+        else print("You are wrong, TRUNK was right the answer\n")
 
         return placemark.wordOne.isNotEmpty() && placemark.wordTwo.isNotEmpty() && placemark.wordThree.isNotEmpty()
     }
@@ -162,7 +166,7 @@ class PlacemarkView {
             rightAnsw++
             print("\nYou are right, PUPIL is the answer")
         }
-        else print("You are wrong, PUPIL was the answer\n")
+        else print("You are wrong, PUPIL was the right answer\n")
 
         return placemark.wordOne.isNotEmpty() && placemark.wordTwo.isNotEmpty() && placemark.wordThree.isNotEmpty()
     }
@@ -175,7 +179,7 @@ class PlacemarkView {
             rightAnsw++
             print("\nYou are right, CASE is the answer")
         }
-        else print("You are wrong, CASE was the answer\n")
+        else print("You are wrong, CASE was the right answer\n")
 
         return placemark.wordOne.isNotEmpty() && placemark.wordTwo.isNotEmpty() && placemark.wordThree.isNotEmpty()
     }
@@ -188,7 +192,7 @@ class PlacemarkView {
             rightAnsw++
             print("\nYou are right, BANK is the answer")
         }
-        else print("You are wrong, BANK was the answer\n")
+        else print("You are wrong, BANK was the right answer\n")
 
         return placemark.wordOne.isNotEmpty() && placemark.wordTwo.isNotEmpty() && placemark.wordThree.isNotEmpty()
     }
@@ -201,7 +205,7 @@ class PlacemarkView {
             rightAnsw++
             print("\nYou are right, SHEET is the answer")
         }
-        else print("You are wrong, SHEET was the answer\n")
+        else print("You are wrong, SHEET was the right answer\n")
 
         return placemark.wordOne.isNotEmpty() && placemark.wordTwo.isNotEmpty() && placemark.wordThree.isNotEmpty()
     }
@@ -214,7 +218,7 @@ class PlacemarkView {
             rightAnsw++
             print("\nYou are right, TANK is the answer")
         }
-        else print("You are wrong, TANK was the answer\n")
+        else print("You are wrong, TANK was the right answer\n")
 
         return placemark.wordOne.isNotEmpty() && placemark.wordTwo.isNotEmpty() && placemark.wordThree.isNotEmpty()
     }
@@ -227,9 +231,10 @@ class PlacemarkView {
             rightAnsw++
             print("\nYou are right, RACQUET is the answer")
         }
-        else print("You are wrong, RACQUET was the answer\n")
+        else print("You are wrong, RACQUET was the right answer\n")
 
-        print("\nThis is the end of the game, you guessed $rightAnsw right words")
+        print("\nThis is the end of the game, you guessed $rightAnsw right words out of 9")
+        rightAnsw = 0
         inputNumber = 0
 
         return placemark.wordOne.isNotEmpty() && placemark.wordTwo.isNotEmpty() && placemark.wordThree.isNotEmpty()

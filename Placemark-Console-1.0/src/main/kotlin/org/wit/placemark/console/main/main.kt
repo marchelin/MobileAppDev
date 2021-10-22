@@ -4,6 +4,7 @@ import mu.KotlinLogging
 import org.wit.placemark.console.models.PlacemarkJSONStore
 import org.wit.placemark.console.models.PlacemarkModel
 import org.wit.placemark.console.views.PlacemarkView
+import org.wit.placemark.console.views.rightAnsw
 
 private val logger = KotlinLogging.logger {}
 
@@ -25,29 +26,28 @@ fun main(args: Array<String>) {
     do {
         input = placemarkView.menu()
         when(input) {
-            1   -> addPlacemark(placemarkModel)
-            2   -> updatePlacemark()
-            3   -> placemarkView.listPlacemarks(placemarks)
-            4   -> searchPlacemark()
+             1   -> addPlacemark()
+             2   -> updatePlacemark()
+             3   -> placemarkView.listPlacemarks(placemarks)
+             4   -> searchPlacemark()
+             5   -> showAnswer()
+             6   -> showCurrenScore()
             -1   -> println("Exiting App...")
             else -> println("Invalid Option")
         }
 
-        if(inputNumber != 10 && input == 1){
+        if(inputNumber < 10 && input == 1){
             inputNumber++
-        }
-        else
-        {
-            print("GAME IS OVER")
         }
 
         println()
     } while (input != -1)
-    logger.info { "Shutting Down Placemark Console App" }
+
+    logger.info { "Shutting Down The Console App" }
 }
 
 fun spawnNewWord(){
-    print("Find a word connected with these two word\n")
+    print("Find a word connected with these two words : ")
 
     val wordPiarsArray: Array<String> = arrayOf("LOCK — PIANO",    "SHIP — CARD",     "TREE — CAR",
                                                 "SCHOOL — EYE", "PILLOW — COURT",  "RIVER — MONEY",
@@ -69,7 +69,7 @@ fun spawnNewWord(){
     }
 }
 
-fun addPlacemark(placemark : PlacemarkModel){
+fun addPlacemark(){
     spawnNewWord()
     println("\nYou are in level $inputNumber")
 
@@ -107,4 +107,22 @@ fun searchPlacemark() {
 fun search(id: Long) : PlacemarkModel? {
     var foundPlacemark = placemarks.findOne(id)
     return foundPlacemark
+}
+
+fun showAnswer(){
+    when (inputNumber) {
+        1 -> print("\nKEY is the answer")
+        2 -> print("\nDECK is the answer")
+        3 -> print("\nTRUNK is the answer")
+        4 -> print("\nPUPIL is the answer")
+        5 -> print("\nCASE is the answer")
+        6 -> print("\nBANK is the answer")
+        7 -> print("\nSHEET is the answer")
+        8 -> print("\nTANK is the answer")
+        9 -> print("\nRACQUET is the answer")
+    }
+}
+
+fun showCurrenScore(){
+    print("\nYour current score is $rightAnsw/9 points")
 }
