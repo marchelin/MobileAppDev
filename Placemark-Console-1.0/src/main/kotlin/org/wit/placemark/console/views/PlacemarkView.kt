@@ -25,6 +25,7 @@ class PlacemarkView {
         println()
         print("Enter Option : ")
         input = readLine()!!
+
         option = if (input.toIntOrNull() != null && !input.isEmpty())
             input.toInt()
         else
@@ -49,7 +50,6 @@ class PlacemarkView {
     fun addPlacemarkData(placemark : PlacemarkModel) : Boolean {
 
         println()
-
         print("1st attempt ---> Type a WORD: ")
         placemark.wordOne = readLine()!!
         print("2nd attempt ---> Type a WORD: ")
@@ -59,14 +59,6 @@ class PlacemarkView {
         //print("Type an id: ")
         //placemark.id = readLine()!!.toLong()
 
-        if(placemarkModel.inputOneCounter == 0 && placemarkModel.wordOne   == "Key" ||  placemarkModel.wordTwo   == "Key" ||  placemarkModel.wordThree == "Key")
-            print("WORD is CORRECT")
-        else if(placemarkModel.inputOneCounter == 1 && placemarkModel.wordOne   == "Key" ||  placemarkModel.wordTwo   == "Key" ||  placemarkModel.wordThree == "Key")
-            print("WORD is CORRECT")
-        else
-        {
-            print("OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOLE")
-        }
         return placemark.wordOne.isNotEmpty() && placemark.wordTwo.isNotEmpty() && placemark.wordThree.isNotEmpty()
     }
 

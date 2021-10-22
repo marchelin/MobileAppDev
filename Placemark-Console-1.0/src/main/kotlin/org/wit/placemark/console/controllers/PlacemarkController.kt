@@ -40,7 +40,7 @@ class PlacemarkController {
     fun menu() :Int { return placemarkView.menu() }
 
     fun add(){
-        var aPlacemark = PlacemarkModel("", "", "", 0)
+        var aPlacemark = PlacemarkModel("", "", "", 0, 1)
 
         if (placemarkView.addPlacemarkData(aPlacemark))
             placemarks.create(aPlacemark)
