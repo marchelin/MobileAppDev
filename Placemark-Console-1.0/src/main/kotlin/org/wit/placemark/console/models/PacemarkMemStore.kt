@@ -10,7 +10,6 @@ internal fun getId(): Long {
 }
 
 class PlacemarkMemStore : PlacemarkStore {
-
     val placemarks = ArrayList<PlacemarkModel>()
 
     override fun findAll(): List<PlacemarkModel> {

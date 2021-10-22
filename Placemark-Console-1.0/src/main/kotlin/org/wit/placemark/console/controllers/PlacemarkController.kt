@@ -6,11 +6,7 @@ import org.wit.placemark.console.models.PlacemarkModel
 import org.wit.placemark.console.views.PlacemarkView
 
 class PlacemarkController {
-
-    // val placemarks = PlacemarkMemStore()
-
     val placemarks = PlacemarkJSONStore()
-
     val placemarkView = PlacemarkView()
     val logger = KotlinLogging.logger {}
 
@@ -25,10 +21,10 @@ class PlacemarkController {
         do {
             input = menu()
             when (input) {
-                1 -> add()
-                2 -> update()
-                3 -> list()
-                4 -> search()
+                 1 -> add()
+                 2 -> update()
+                 3 -> list()
+                 4 -> search()
                 -1 -> println("Exiting App")
                 else -> println("Invalid Option")
             }
@@ -53,7 +49,6 @@ class PlacemarkController {
     }
 
     fun update() {
-
         placemarkView.listPlacemarks(placemarks)
         var searchId = placemarkView.getId()
         val aPlacemark = search(searchId)
@@ -75,7 +70,6 @@ class PlacemarkController {
         val aPlacemark = search(placemarkView.getId())!!
         placemarkView.showPlacemark(aPlacemark)
     }
-
 
     fun search(id: Long) : PlacemarkModel? {
         var foundPlacemark = placemarks.findOne(id)

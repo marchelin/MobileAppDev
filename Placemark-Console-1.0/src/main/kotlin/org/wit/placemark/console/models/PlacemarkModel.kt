@@ -5,6 +5,5 @@ data class PlacemarkModel(
     var wordTwo:   String = "",
     var wordThree: String = "",
     var id: Long,
-    var inputOneCounter: Int = 1
+    var inputOneCounter: Int
 )
-
